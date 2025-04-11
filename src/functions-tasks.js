@@ -90,17 +90,16 @@ function getPowerFunction(exponent) {
  *   getPolynom(8)     => y = 8
  *   getPolynom()      => null
  */
-function getPolynom() {
-  function getSum(...x) {
-    if (getPolynom.length === 0) return null;
-    const len = getPolynom.length - 1;
+function getPolynom(...args) {
+  if (args.length === 0) return null;
+  return function getSum(x) {
     let sum = 0;
+    const len = args.length - 1;
     for (let i = 0; i <= len; i += 1) {
-      sum += getPolynom[i] * x ** (len - i);
+      sum += args[i] * x ** (len - i);
     }
     return sum;
-  }
-  return getSum();
+  };
 }
 
 /**
