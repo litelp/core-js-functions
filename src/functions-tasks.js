@@ -72,7 +72,7 @@ function getArgumentsCount(funcs) {
  *
  */
 function getPowerFunction(exponent) {
-  return function (base) {
+  return function calcPow(base) {
     return base ** exponent;
   };
 }
@@ -118,7 +118,7 @@ function getPolynom(...args) {
  */
 function memoize(func) {
   const cache = new Map();
-  return function (...args) {
+  return function getCache(...args) {
     const key = JSON.stringify(func);
     if (cache.get(key)) {
       return cache.get(key);
@@ -189,7 +189,7 @@ function logger(/* func, logFunc */) {
  *   partialUsingArguments(fn, 'a','b','c','d')() => 'abcd'
  */
 function partialUsingArguments(fn, ...args1) {
-  return function (...args2) {
+  return function partialFn(...args2) {
     return fn(...args1, ...args2);
   };
 }
@@ -213,7 +213,7 @@ function partialUsingArguments(fn, ...args1) {
  */
 function getIdGeneratorFunction(startFrom) {
   let count = startFrom - 1;
-  return function () {
+  return function privateIncrement() {
     count += 1;
     return count;
   };
